@@ -1,44 +1,52 @@
 import 'package:flutter/material.dart';
 
 class BoxesWidget extends StatelessWidget {
-  const BoxesWidget({Key? key}) : super(key: key);
+  final int count;
+
+  const BoxesWidget({Key? key, required this.count}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: double.infinity,
-      color: Colors.lightBlue[50],
-      padding: EdgeInsets.all(50),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: getBoxes(5),
+      // controlls the list height
+      height: 145,
+      color: Colors.red[100],
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        children: fillBoxesList(count),
       ),
     );
   }
 
-  List<Row> getBoxes(int count) {
-    List<Row> rowList = [];
+  List<Widget> fillBoxesList(int count) {
+    List<Widget> boxesList = [];
     for (var i = 0; i < count; i++) {
-      rowList.add(
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Container(
-              margin: EdgeInsets.all(10),
-              width: 100,
-              height: 100,
-              color: Colors.lightBlue,
-            ),
-            Text(
-              'Bla bla bla',
-              style: TextStyle(color: Colors.black),
-            )
-          ],
-        ),
-      );
+      boxesList.add(this.getOneBox());
     }
 
-    return rowList;
+    return boxesList;
+  }
+
+  Container getOneBox() {
+    return Container(
+      color: Colors.orange,
+      margin: EdgeInsets.all(5),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            margin: EdgeInsets.all(10),
+            width: 100,
+            height: 100,
+            color: Colors.lightBlue,
+          ),
+          Text(
+            'Bla bla bla',
+            style: TextStyle(color: Colors.black),
+          )
+        ],
+      ),
+    );
   }
 }

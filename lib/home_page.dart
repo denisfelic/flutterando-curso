@@ -44,7 +44,9 @@ class HomePageState extends State<HomePage> {
         title: Text('Body : $title'),
         actions: [CustomSwitch()],
       ),
-      body: Text('oi'),
+      body: BoxesWidget(
+        count: 10,
+      ),
       floatingActionButton: getFloatActionButtonWidget(),
     );
   }
